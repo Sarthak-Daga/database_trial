@@ -18,7 +18,7 @@ export default function FormPage() {
     }
 
     try {
-      const response = await fetch("/kalchoddu/api", {
+      const response = await fetch("/retrieve/api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
