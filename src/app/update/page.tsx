@@ -26,7 +26,7 @@ export default function Update() {
 
       if (response.ok) {
         setIsUpdated(true); // Set update flag to true
-        setTimeout(() => setIsUpdated(false), 560); // Reset flag after 3 seconds
+        setTimeout(() => setIsUpdated(false), 500); // Reset flag after 3 seconds
         setName("");
         setRollNo("");
       } else {
