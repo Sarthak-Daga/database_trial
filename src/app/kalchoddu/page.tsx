@@ -18,7 +18,7 @@ export default function FormPage() {
     }
 
     try {
-      const response = await fetch("/form/api", {
+      const response = await fetch("/kalchoddu/api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,6 +29,7 @@ export default function FormPage() {
       if (response.ok) {
         const data = await response.json();
         setRollNo(data.data?.RollNo || null); // Update RollNo from response
+
         setName(""); // Clear input field
       } else {
         const errorData = await response.json();
@@ -41,26 +42,35 @@ export default function FormPage() {
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          value={Name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-
-      <p>Name: {Name}</p>
-      {RollNo !== null ? (
-        <p>RollNo of the Name: {RollNo}</p>
-      ) : error ? (
-        <p className="error">{error}</p>
-      ) : (
-        <p>Submit a name to see the RollNo.</p>
-      )}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+        <h1 className="text-2xl font-bold mb-4 text-center">Form Page</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={Name}
+              onChange={(e) => setName(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Enter your name"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Submit
+          </button>
+        </form>
+        Your RollNo. : {RollNo}
+      </div>
     </div>
-  );
+  )
 }
