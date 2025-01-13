@@ -26,6 +26,7 @@ export default function Delete() {
       if (response.ok) {
         setIsUpdated(true); // Set update flag to true
         setTimeout(() => setIsUpdated(false), 600); // Reset flag after 0.6 seconds
+        alert("Deleted")
         setName("");
       } else {
         alert("Failed to update data.");
